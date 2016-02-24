@@ -1,0 +1,30 @@
+{
+  "name": "ThreeDViewerComponent",
+  "authors": [
+    "Omri Aharon <omri.aharon@autodesk.com>"
+  ],
+  "description": "Web Component for a 3D Viewer of a 3D model object",
+  "main": "three-d-viewer.html",
+  "moduleType": [],
+  "keywords": [
+    "polymer",
+    "web-components",
+    "custom-elements",
+    "polymer-elements"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-ajax": "PolymerElements/iron-ajax#~1.1.1",
+    "jquery": "1.9",
+    "three.js": "https://github.com/mrdoob/three.js.git#r73"
+  }
+}
