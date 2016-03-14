@@ -1,3 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
-index.html
 bower_components
+node_modules
+three-d-viewer-es5.js
+three-d-viewer-es5.js.map

@@ -1,0 +1,129 @@
+<dom-module id="three-d-viewer">
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .three-d-viewer-wrapper {
+        position: relative;
+        height: 100%;
+        width: 100%;
+
+      }
+
+      .three-d-viewer-wrapper:before {
+        content: "";
+        display: block;
+      }
+
+      .viewer-anchor {
+        position: relative;
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+      }
+
+      .arrow-left {
+        font-size: 25px;
+        position: absolute;
+        top: 45%;
+        left: 4%;
+        cursor: pointer;
+        transform:rotate(135deg);
+        -webkit-transform:rotate(135deg);
+      }
+
+      .arrow-right {
+        font-size: 25px;
+        position: absolute;
+        top: 45%;
+        right: 4%;
+        cursor: pointer;
+        transform:rotate(-45deg);
+        -webkit-transform:rotate(-45deg);
+      }
+
+      .viewer {
+        height: 100%;
+        width: 99%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid #e0e0e0;
+        overflow: hidden;
+      }
+
+      .img-box-rel-size {
+        width: 100%;
+        height: 100%;
+      }
+
+      [class^=arrow-]{
+        z-index: 2;
+        border:       solid #222;
+        border-width: 0 .2em .2em 0;
+        display:      inline-block;
+        padding:      .20em;
+      }
+
+      .loader {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 44%;
+        left: 0;
+        font-size: 20px;
+        text-align: center;
+        z-index: 3;
+      }
+
+      .loader.error {
+        z-index: 1;
+      }
+
+    </style>
+
+    <div class="viewer-anchor">
+      <template is="dom-repeat" items="{{previews}}">
+
+        <template is="dom-if" if="{{showPreview(item)}}">
+          <div class="img-box-rel-size">
+
+            <div class="three-d-viewer-wrapper">
+              <div class="viewer" id="three-d-viewer-{{index}}"></div>
+            </div>
+
+          </div>
+        </template>
+
+      </template>
+
+      <template is="dom-if" if="{{showViewerArrows(previews)}}">
+        <div class="arrow-left" on-click="showPreviousPreview"></div>
+        <div class="arrow-right" on-click="showNextPreview"></div>
+      </template>
+
+      <template is="dom-if" if="{{!isThreeDViewerReady}}">
+        <div class$="loader {{computeErrorClass(loadingMessage)}}">[[loadingMessage]]</div>
+      </template>
+    </div>
+
+  </template>
+
+
+  <link rel="import" href="../../polymer/polymer.html">
+
+  <script src="js/viewer.js"></script>
+  <script src="js/three.min.js"></script>
+  <script src="js/OBJLoader.js"></script>
+  <script src="js/STLLoader.js"></script>
+  <script src="js/OrbitControls.js"></script>
+
+  <script src="three-d-viewer-es5.js"></script>
+
+</dom-module>
