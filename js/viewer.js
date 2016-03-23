@@ -2,59 +2,108 @@ var loadedModel;
 var grid;
 var showcaseModel = true;
 
-
 var Viewer = function () {
     var $this = this;
 
-    this.init = function () {
-        $this.autorotate = true;
+    this.setDefaults = function (config) {
+        if (config.autorotate === undefined) {
+            config.autorotate = true;
+        }
+        if (config.antialias === undefined) {
+            config.antialias = true;
+        }
+        if (config.alpha === undefined) {
+            config.alpha = true;
+        }
+        if (config.maxDistance === undefined) {
+            config.maxDistance = 1000;
+        }
+        if (config.viewAngle === undefined) {
+            config.viewAngle = 80;
+        }
+        if (config.aspect === undefined) {
+            config.aspect = 1.0;
+        }
+        if (config.near === undefined) {
+            config.near = 0.01;
+        }
+        if (config.far === undefined) {
+            config.far = 1000;
+        }
+        if (config.size === undefined) {
+            config.size = 500;
+        }
+        if (config.step === undefined) {
+            config.step = 20;
+        }
+        if (config.gridY === undefined) {
+            config.gridY = 0.2;
+        }
+    };
+
+    /**
+     * A config object, takes in several parameters: (see THREE.js documentation for further info if needed)
+     * @param config
+     * autorotate = boolean (slowly rotate model until clicked)
+     * antialias = boolean
+     * alpha = boolean
+     * maxDistance = numeric
+     * viewAngle = numeric
+     * aspect = numeric
+     * near = numeric
+     * far = numeric
+     * size = numeric
+     * step = numeric
+     * gridY = numeric, initial Y value of grid
+     */
+    this.init = function (config) {
+        config = config || {};
+        $this.setDefaults(config);
+        $this.autorotate = config.autorotate;
         var self = $this;
 
         var body = document.body;
         var html = document.documentElement;
 
         var bodyHeight = Math.max( body.scrollHeight, body.offsetHeight,
-            html.clientHeight, html.scrollHeight, html.offsetHeight );
+                                   html.clientHeight, html.scrollHeight,
+                                   html.offsetHeight );
 
         $this.fov = Math.asin(bodyHeight / 40);
 
-        $this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+        $this.renderer = new THREE.WebGLRenderer({antialias: config.antialias, alpha: config.alpha});
         $this.renderer.setClearColor(0x000000, 0);
 
         $this.scene = new THREE.Scene();
 
-        var VIEW_ANGLE = 80;
-        var ASPECT = 1.0;
-        var NEAR = 0.01;
-        var FAR = 1000;
+        var VIEW_ANGLE = config.viewAngle;
+        var ASPECT = config.aspect;
+        var NEAR = config.near;
+        var FAR = config.far;
 
         $this.camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
         $this.camera.position.set(-9.5, 14, 11);
 
         $this.controls = new THREE.OrbitControls(self.camera, self.renderer.domElement);
-        $this.controls.maxDistance = 1000;
-        $this.controls.autoRotate = true;
+        $this.controls.maxDistance = config.maxDistance;
+        $this.controls.autoRotate = config.autorotate;
 
         // create lights
-        light = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.4);
+        var light = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.4);
 
-        shadowLight = new THREE.DirectionalLight(0xffffff, 0.4);
+        var shadowLight = new THREE.DirectionalLight(0xffffff, 0.4);
         shadowLight.position.set(100, 50, 100);
 
-        backLight = new THREE.DirectionalLight(0xffffff, .6);
+        var backLight = new THREE.DirectionalLight(0xffffff, .6);
         backLight.position.set(-100, 200, 50);
 
         $this.scene.add(backLight);
         $this.scene.add(light);
         $this.scene.add(shadowLight);
 
-        // GRID HELPER
-        var size = 500;
-        var step = 20;
-
-        var gridHelper = new THREE.GridHelper(size, step);
+        var gridHelper = new THREE.GridHelper(config.size, config.step);
         gridHelper.setColors(0xaaaaaa, 0xe0e0e0);
-        gridHelper.position.y = 0.2;
+        gridHelper.position.y = config.gridY;
         $this.scene.add(gridHelper);
 
         // GROUND
@@ -196,7 +245,7 @@ var Viewer = function () {
 
     this.fitMeshToCamera = function (group) {
         var max = {x: 0, y: 0, z: 0};
-        min = {x: 0, y: 0, z: 0};
+        var min = {x: 0, y: 0, z: 0};
 
         group.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
@@ -214,9 +263,9 @@ var Viewer = function () {
         }.bind($this));
 
         var meshY = Math.abs(max.y - min.y);
-        meshX = Math.abs(max.x - min.x);
-        meshZ = Math.abs(max.z - min.z);
-        scaleFactor = 10 / Math.max(meshX, meshY);
+        var meshX = Math.abs(max.x - min.x);
+        var meshZ = Math.abs(max.z - min.z);
+        var scaleFactor = 10 / Math.max(meshX, meshY);
 
         group.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
