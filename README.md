@@ -21,5 +21,5 @@ Then add these 2 lines at your HTML file:
 From here you just use the tag itself with the parameters, e.g.:
 
         <three-d-viewer color="#ff0000" 
-                        previews='[{"file_type": "stl", "file_url": "../samples/Camel.stl"}]'>
+                        previews='[{"file_type": "stl", "file_url": "bower_components/ThreeDViewerComponent/samples/Camel.stl"}]'>
         </three-d-viewer>
