@@ -55,8 +55,8 @@ class ThreeDViewer {
     }
 
     renderModel(index) {
-        index = index || 0;
-        this.viewer.render('#three-d-viewer-' + index);
+        //index = index || 0;
+        this.viewer.render('#three-d-viewer');
         this.viewer.resize();
         this.viewer.loadObject(this.currentModelUrl, this.fileExtension, () => {
             this.isThreeDViewerReady = true;

@@ -89,19 +89,19 @@
     </style>
 
     <div class="viewer-anchor">
-      <template is="dom-repeat" items="{{previews}}">
+      <!--<template is="dom-repeat" items="{{previews}}">-->
 
-        <template is="dom-if" if="{{showPreview(item)}}">
+        <!--<template is="dom-if" >-->
           <div class="img-box-rel-size">
 
             <div class="three-d-viewer-wrapper">
-              <div class="viewer" id="three-d-viewer-{{index}}"></div>
+              <div class="viewer" id="three-d-viewer"></div>
             </div>
 
           </div>
-        </template>
+        <!--</template>-->
 
-      </template>
+      <!--</template>-->
 
       <template is="dom-if" if="{{showViewerArrows(previews)}}">
         <div class="arrow-left" on-click="showPreviousPreview"></div>
@@ -3431,8 +3431,8 @@ var ThreeDViewer = function () {
         value: function renderModel(index) {
             var _this = this;
 
-            index = index || 0;
-            this.viewer.render('#three-d-viewer-' + index);
+            //index = index || 0;
+            this.viewer.render('#three-d-viewer');
             this.viewer.resize();
             this.viewer.loadObject(this.currentModelUrl, this.fileExtension, function () {
                 _this.isThreeDViewerReady = true;

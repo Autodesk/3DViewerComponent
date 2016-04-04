@@ -17,8 +17,13 @@
 
     <style>
     html, body {
-        height: 95%;
-        width: 95%;
+        height: 100%;
+        width: 100%;
+    }
+
+    .container {
+        width: 80vw;
+        height: 80vh;
     }
     </style>
 
@@ -26,7 +31,9 @@
 
 <body unresolved class="fullbleed layout vertical">
 
-<three-d-viewer id="viewer" color="93AEBF" previews='[{"file_type": "stl","file_url": "https://spark-mkp-nonprod-sb-temp-files.s3.amazonaws.com/Camelz.stl"},{"file_type": "stl","file_url": "https://spark-mkp-nonprod-sb-temp-files.s3.amazonaws.com/Camel.stl"}]'></three-d-viewer>
+<div class="container">
+    <three-d-viewer id="viewer" color="93AEBF" previews='[{"file_type": "stl","file_url": "../samples/Camel.stl"}]'></three-d-viewer>
+</div>
 
 </body>
 
