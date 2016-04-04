@@ -4,7 +4,7 @@
     "Autodesk TLV Web Guild"
   ],
   "description": "Web Component for a 3D Viewer of a 3D model object",
-  "main": "three-d-viewer.html",
+  "main": "dist/three-d-viewer.html",
   "keywords": [
     "polymer",
     "web-components",
