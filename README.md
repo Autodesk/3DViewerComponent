@@ -4,8 +4,10 @@ ThreeD Viewer Component
 
 This is a 3D viewer web component that presents a model, currently based on 3 parameters:
 
-* Previews
-* Color(optional)
+* Previews - An array of objects, each consisting of two properties:
+ 	1. file_type: "obj"/"stl"
+ 	2. file_url: can be an absolute URL (for an S3 bucket for instance), or a relative path
+* Color (optional) - If not provided, a value of #F18D05 will be used
 
 ### Installation
 
@@ -18,4 +20,6 @@ Then add these 2 lines at your HTML file:
 
 From here you just use the tag itself with the parameters, e.g.:
 
-        <three-d-viewer color=" *hexa color here, e.g. ff0000* " previews=' *arrayOfAssetPreviews* '></three-d-viewer>
+        <three-d-viewer color="#ff0000" 
+                        previews='[{"file_type": "stl", "file_url": "../samples/Camel.stl"}]'>
+        </three-d-viewer>
