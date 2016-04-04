@@ -16,7 +16,7 @@ This is a 3D viewer web component that presents a model, currently based on 3 pa
 Then add these 2 lines at your HTML file:
 
         <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-        <link rel="import" href="bower_components/ThreeDViewerComponent/html/three-d-viewer.html">
+        <link rel="import" href="bower_components/ThreeDViewerComponent/dist/three-d-viewer.html">
 
 From here you just use the tag itself with the parameters, e.g.:
 
