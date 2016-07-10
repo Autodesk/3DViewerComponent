@@ -2,7 +2,7 @@
 ThreeD Viewer Component
 =====================
 
-This is a 3D viewer web component that presents a model, currently based on 3 parameters:
+This is a 3D viewer web component that presents a model, currently based on 2 parameters:
 
 * Previews - An array of objects, each consisting of two properties:
  	1. file_type: "obj"/"stl"
@@ -11,12 +11,12 @@ This is a 3D viewer web component that presents a model, currently based on 3 pa
 
 ### Installation
 
-		bower install --save https://git.autodesk.com/FrontEndTLV/ThreeDViewerWC.git
+		bower install --save https://git.autodesk.com/FrontEndTLV/3DViewerComponent.git
 
 Then add these 2 lines at your HTML file:
 
         <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-        <link rel="import" href="bower_components/ThreeDViewerComponent/html/three-d-viewer.html">
+        <link rel="import" href="bower_components/3DViewerComponent/html/three-d-viewer.html">
 
 From here you just use the tag itself with the parameters, e.g.:
 

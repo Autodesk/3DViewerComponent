@@ -114,7 +114,7 @@ module.exports = function (grunt) {
         // Empties folders to start fresh
         clean: {
             dist: {
-                src: ["dist/**/*", 'bower_components/ViewerWebComponent/**/*']
+                src: ["dist/**/*", 'bower_components/3DViewerComponent/**/*']
             }
         },
         //clean: ["dist"],
@@ -157,7 +157,7 @@ module.exports = function (grunt) {
                     tag: ''
                 },
                 src: 'three-d-viewer.html',
-                dest: 'bower_components/ViewerWebComponent/dist/three-d-viewer.html'
+                dest: 'bower_components/3DViewerComponent/dist/three-d-viewer.html'
             }
         },
 
@@ -168,7 +168,7 @@ module.exports = function (grunt) {
                     expand: true,
                     dot: true,
                     cwd: '',
-                    dest: 'bower_components/ViewerWebComponent',
+                    dest: 'bower_components/3DViewerComponent',
                     src: [
                         'js/*'
                     ]
