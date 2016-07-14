@@ -11,7 +11,7 @@ This is a 3D viewer web component that presents a model, currently based on 2 pa
 
 ### Installation
 
-		bower install --save git@github.com:Autodesk/3DViewerComponent.git
+		bower install --save 3DViewerComponent
 
 Then add these 2 lines at your HTML file:
 
