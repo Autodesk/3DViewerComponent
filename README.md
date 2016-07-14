@@ -9,6 +9,10 @@ This is a 3D viewer web component that presents a model, currently based on 2 pa
  	2. file_url: can be an absolute URL (for an S3 bucket for instance), or a relative path
 * Color (optional) - If not provided, a value of #F18D05 will be used
 
+### Demo
+
+You can find a demo page [here.](http://codepen.io/OmriAharon/pen/XKVXKk)
+
 ### Installation
 
 		bower install --save 3DViewerComponent
