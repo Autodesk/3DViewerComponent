@@ -1,5 +1,5 @@
 {
-  "name": "threedviewer",
+  "name": "3DViewerComponent",
   "version": "1.0.0",
   "description": "ThreeD Viewer Component =====================",
   "main": "Gruntfile.js",
