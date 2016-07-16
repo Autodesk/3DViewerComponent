@@ -16,7 +16,7 @@ You can find a demo page [here.](http://codepen.io/OmriAharon/pen/XKVXKk)
 ### Installation
 
 Currently the best way to install is using Bower since it has Polymer's dependencies installed automatically.
-If you rather instlal via npm, you can, but you need to take care of the `webcomponents` & `polymer` dependencies manually.
+If you rather install via npm you can, but you need to take care of the `webcomponents` & `polymer` dependencies manually.
 
 		bower install --save 3DViewerComponent
 
