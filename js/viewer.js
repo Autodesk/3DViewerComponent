@@ -148,6 +148,30 @@ var Viewer = function () {
         $this.scene.remove(obj);
     };
 
+    this.loadJson = function (obj, onViewerReady, onError) {
+        showcaseModel = true;
+        var loader = new THREE.ObjectLoader();
+
+        loader.load(obj, function (object) {
+            var newColor = '#F18D05';
+            var color = new THREE.Color(newColor);
+            var material = new THREE.MeshPhongMaterial({color: color});
+
+            geom = $this.centerGeometry(object.geometry);
+            var mesh = new THREE.Mesh(geom, material);
+
+            if ($this.autorotate) {
+                mesh.rotation.x = -Math.PI / 2;
+            }
+
+            mesh.name = 'objGroup';
+            loadedModel = mesh;
+            $this.scene.add(mesh);
+            $this.fitMeshToCamera(mesh);
+
+            onViewerReady && onViewerReady()
+        }.bind($this), undefined, onError);
+    };
 
     this.loadObj = function (obj, onViewerReady, onError) {
         var self = $this;
@@ -217,6 +241,7 @@ var Viewer = function () {
 
     this.centerGeometry = function (geom) {
         var geometry = new THREE.Geometry();
+
         geometry.fromBufferGeometry(geom);
         geometry.computeBoundingBox();
         geometry.center();
@@ -281,6 +306,12 @@ var Viewer = function () {
 
     this.loadObject = function (obj, type, onViewerReady, onLoadError) {
         switch (type) {
+            case 'js':
+                $this.loadJson(obj, onViewerReady, onLoadError);
+                break;
+            case 'json':
+                $this.loadJson(obj, onViewerReady, onLoadError);
+                break;
             case 'obj':
                 $this.loadObj(obj, onViewerReady, onLoadError);
                 break;
