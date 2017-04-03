@@ -148,29 +148,38 @@ var Viewer = function () {
         $this.scene.remove(obj);
     };
 
+    this.get_json = function(url, callback) {
+	    http.get(url, function(res) {
+	        var body = '';
+	        res.on('data', function(chunk) {
+	            body += chunk;
+	        });
+
+	        res.on('end', function() {
+	            var response = JSON.parse(body);
+	            callback(response);
+	        });
+	    });
+	};
+    
     this.loadJson = function (obj, onViewerReady, onError) {
-        showcaseModel = true;
-        var loader = new THREE.ObjectLoader();
+    	
+    	var loader = new THREE.TADLoader();
+    	
+    	
+    	loader.load(obj,
+    		function ( tadobj ) {
+	    		
+	            $this.scene.add(tadobj);
+	            $this.fitMeshToCamera(tadobj.children[0]);
 
-        loader.load(obj, function (object) {
-            var newColor = '#F18D05';
-            var color = new THREE.Color(newColor);
-            var material = new THREE.MeshPhongMaterial({color: color});
-
-            geom = $this.centerGeometry(object.geometry);
-            var mesh = new THREE.Mesh(geom, material);
-
-            if ($this.autorotate) {
-                mesh.rotation.x = -Math.PI / 2;
-            }
-
-            mesh.name = 'objGroup';
-            loadedModel = mesh;
-            $this.scene.add(mesh);
-            $this.fitMeshToCamera(mesh);
-
-            onViewerReady && onViewerReady()
-        }.bind($this), undefined, onError);
+                onViewerReady && onViewerReady()
+	            
+    			
+    		}
+    	);
+    	
+    	
     };
 
     this.loadObj = function (obj, onViewerReady, onError) {
