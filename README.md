@@ -5,7 +5,7 @@ ThreeD Viewer Component
 This is a 3D viewer web component that presents a model, currently based on 2 parameters:
 
 * Previews - An array of objects, each consisting of two properties:
- 	1. file_type: "obj"/"stl"
+ 	1. file_type: "obj"/"stl"/"json" (where "json" is a valid [THREEjs Scene Object](https://github.com/mrdoob/three.js/wiki/JSON-Object-Scene-format-4))
  	2. file_url: can be an absolute URL (for an S3 bucket for instance), or a relative path
 * Color (optional) - If not provided, a value of #F18D05 will be used
 
@@ -27,7 +27,7 @@ Then add these 2 lines at your HTML file:
 
 From here you just use the tag itself with the parameters, e.g.:
 
-        <three-d-viewer color="ff0000" 
+        <three-d-viewer color="ff0000"
                         previews='[{"file_type": "stl", "file_url": "bower_components/3DViewerComponent/samples/Camel.stl"}]'>
         </three-d-viewer>
 
@@ -40,5 +40,3 @@ If you're running as a new project or a blank new HTML page and don't have your 
                 overflow: hidden;
             }
         </style>
-
-    
